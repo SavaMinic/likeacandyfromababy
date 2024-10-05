@@ -15,6 +15,12 @@ public class ChildController : MonoBehaviour
 
     [SerializeField] private LayerMask jumpLayerMask;
 
+    [SerializeField] private LayerMask hitLayerMask;
+
+    [SerializeField] private AnimationCurve hitMagnitudeToDamage;
+
+    [SerializeField] private float invulnerableDelay = 0.5f;
+
     [SerializeField] private float speed;
 
     [SerializeField] private float rotationSpeed;
@@ -31,6 +37,8 @@ public class ChildController : MonoBehaviour
 
     private GrabController _grabController;
     private ThrowableObject _throwableObject;
+    private ThrowableObject _thrownObject;
+    private float _invulnerableTime;
 
     private Camera _mainCamera;
 
@@ -79,6 +87,7 @@ public class ChildController : MonoBehaviour
         {
             if (_grabController.LatestGrabObject != null)
             {
+                _thrownObject = null;
                 _throwableObject = _grabController.LatestGrabObject;
                 // hold and lock in place
                 _throwableObject.Hold(transform);
@@ -92,7 +101,8 @@ public class ChildController : MonoBehaviour
                 var throwVector = throwForce.x * transform.forward;
                 throwVector.y = throwForce.y;
                 _throwableObject.Throw(throwVector);
-                
+
+                _thrownObject = _throwableObject;
                 _throwableObject = null;
             }
         }
@@ -102,6 +112,25 @@ public class ChildController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (((1 << collision.gameObject.layer) & jumpLayerMask) != 0) _isJumping = false;
+        if (((1 << collision.gameObject.layer) & jumpLayerMask) != 0)
+        {
+            _isJumping = false;
+        }
+        
+        // check for hit
+        if (Time.time > _invulnerableTime && ((1 << collision.gameObject.layer) & hitLayerMask) != 0)
+        {
+            var currentThrowable = collision.gameObject.GetComponent<ThrowableObject>();
+            if (currentThrowable != null && currentThrowable != _thrownObject)
+            {
+                var magnitude = currentThrowable.VelocityMagnitude;
+                var damage = hitMagnitudeToDamage.Evaluate(magnitude);
+                if (damage > 0.1f)
+                {
+                    Debug.LogError($"{gameObject.name} COLLIDE {currentThrowable.name} v:{currentThrowable.VelocityMagnitude} d:{damage}");
+                    _invulnerableTime = Time.time + invulnerableDelay;
+                }
+            }
+        }
     }
 }

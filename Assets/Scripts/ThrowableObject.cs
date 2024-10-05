@@ -6,6 +6,8 @@ public class ThrowableObject : MonoBehaviour
     private Rigidbody _rigidbody;
     private Transform _oldParent;
 
+    public float VelocityMagnitude => _rigidbody.velocity.magnitude;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

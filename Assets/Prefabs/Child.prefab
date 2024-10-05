@@ -158,6 +158,33 @@ MonoBehaviour:
   jumpLayerMask:
     serializedVersion: 2
     m_Bits: 3072
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  hitMagnitudeToDamage:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 7.764934
+      outSlope: 7.764934
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.12890983
+    - serializedVersion: 3
+      time: 5
+      value: 10
+      inSlope: 0.50306195
+      outSlope: 0.50306195
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11720693
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   speed: 2.1
   rotationSpeed: 10
   jumpForce: 3.5
