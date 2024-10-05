@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class ChildController : MonoBehaviour
 {
-
+    [SerializeField]
+    private string horizontalAxis = "Horizontal";
+    
+    [SerializeField]
+    private string verticalAxis = "Vertical";
+    
     [SerializeField]
     private float speed;
     
@@ -27,8 +32,8 @@ public class ChildController : MonoBehaviour
 
     private void Update()
     {
-        var isKeyPressed = Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f;
-        var inputVector = new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical"));
+        var isKeyPressed = Input.GetAxis(horizontalAxis) != 0f || Input.GetAxis(verticalAxis) != 0f;
+        var inputVector = new Vector3(Input.GetAxis(horizontalAxis),0, Input.GetAxis(verticalAxis));
         float cameraFacing = _mainCamera.transform.eulerAngles.y;
         var moveVector = Quaternion.Euler(0, cameraFacing, 0) * inputVector;
 
