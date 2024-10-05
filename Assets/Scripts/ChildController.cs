@@ -30,13 +30,12 @@ public class ChildController : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private GrabController _grabController;
-    private GameObject _holdObject;
-    private Transform _oldHoldObjectParent;
+    private ThrowableObject _throwableObject;
 
     private Camera _mainCamera;
 
     private float _rotation;
-    private bool isJumping;
+    private bool _isJumping;
 
     private void Awake()
     {
@@ -68,42 +67,33 @@ public class ChildController : MonoBehaviour
         }
 
         // Jumping
-        if (!isJumping && Input.GetKeyDown(jumpKey))
+        if (!_isJumping && Input.GetKeyDown(jumpKey))
         {
-            isJumping = true;
+            _isJumping = true;
             charBody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
             animator.SetTrigger(JumpAnimKey);
         }
 
         // hold/throw
-        if (_holdObject == null && Input.GetKeyDown(holdThrowKey))
+        if (_throwableObject == null && Input.GetKeyDown(holdThrowKey))
         {
             if (_grabController.LatestGrabObject != null)
             {
-                _holdObject = _grabController.LatestGrabObject;
-                // change the parent
-                _oldHoldObjectParent = _holdObject.transform.parent;
-                _holdObject.GetComponent<Rigidbody>().isKinematic = true;
-                _holdObject.GetComponent<Collider>().enabled = false;
-                _holdObject.transform.SetParent(transform);
-                // hold it up
-                _holdObject.transform.localPosition = new Vector3(0,0.5f, 0.25f);
+                _throwableObject = _grabController.LatestGrabObject;
+                // hold and lock in place
+                _throwableObject.Hold(transform);
             }
         }
-        else if (_holdObject != null && Input.GetKeyUp(holdThrowKey))
+        else if (_throwableObject != null && Input.GetKeyUp(holdThrowKey))
         {
-            if (_holdObject != null)
+            if (_throwableObject != null)
             {
-                _holdObject.transform.SetParent(_oldHoldObjectParent);
-                var holdObjectRigidbody = _holdObject.GetComponent<Rigidbody>();
-                holdObjectRigidbody.isKinematic = false;
-                _holdObject.GetComponent<Collider>().enabled = true;
-                _oldHoldObjectParent = null;
-                _holdObject = null;
-
+                // throw it away
                 var throwVector = throwForce.x * transform.forward;
                 throwVector.y = throwForce.y;
-                holdObjectRigidbody.AddForce(throwVector);
+                _throwableObject.Throw(throwVector);
+                
+                _throwableObject = null;
             }
         }
 
@@ -112,6 +102,6 @@ public class ChildController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (((1 << collision.gameObject.layer) & jumpLayerMask) != 0) isJumping = false;
+        if (((1 << collision.gameObject.layer) & jumpLayerMask) != 0) _isJumping = false;
     }
 }

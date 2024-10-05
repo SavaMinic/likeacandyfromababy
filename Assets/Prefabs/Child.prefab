@@ -160,7 +160,7 @@ MonoBehaviour:
     m_Bits: 3072
   speed: 2.1
   rotationSpeed: 10
-  jumpForce: 35
+  jumpForce: 3.5
   throwForce: {x: 300, y: 90}
   charTransform: {fileID: 6241102458091265201}
   charBody: {fileID: 1636382116091801702}
