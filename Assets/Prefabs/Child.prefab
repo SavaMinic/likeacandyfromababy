@@ -189,6 +189,8 @@ MonoBehaviour:
   speed: 2.1
   rotationSpeed: 10
   jumpForce: 3.5
+  maximumHitPoints: 25
+  cryDelay: 5
   throwForce: {x: 300, y: 90}
   charTransform: {fileID: 6241102458091265201}
   charBody: {fileID: 1636382116091801702}
@@ -437,6 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  cryColor: {r: 1, g: 0.9765383, b: 0.2980392, a: 1}
   hitDuration: 0.4
   hitColorAnimationCurve:
     serializedVersion: 2
