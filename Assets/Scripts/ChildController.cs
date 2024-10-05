@@ -21,9 +21,13 @@ public class ChildController : MonoBehaviour
     [SerializeField]
     private Rigidbody charBody;
     
+    [SerializeField]
+    private Animator animator;
+    
     private Camera _mainCamera;
 
-    private float rotation;
+    private float _rotation;
+    private static readonly int IsWalkingAnimKey = Animator.StringToHash("isWalking");
 
     private void Awake()
     {
@@ -50,5 +54,7 @@ public class ChildController : MonoBehaviour
         {
             charBody.angularVelocity = Vector3.zero;
         }
+        
+        animator.SetBool(IsWalkingAnimKey, isKeyPressed);
     }
 }

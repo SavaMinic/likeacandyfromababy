@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: horizontalAxis
       value: Horizontal2
       objectReference: {fileID: 0}
+    - target: {fileID: 3592796595821795515, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6241102458091265201, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.77
