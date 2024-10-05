@@ -39,6 +39,7 @@ public class ChildController : MonoBehaviour
     private ThrowableObject _throwableObject;
     private ThrowableObject _thrownObject;
     private float _invulnerableTime;
+    private HitFeedback _hitFeedback;
 
     private Camera _mainCamera;
 
@@ -49,6 +50,7 @@ public class ChildController : MonoBehaviour
     {
         _mainCamera = Camera.main;
         _grabController = GetComponentInChildren<GrabController>();
+        _hitFeedback = GetComponentInChildren<HitFeedback>();
     }
 
     private void Update()
@@ -129,6 +131,7 @@ public class ChildController : MonoBehaviour
                 {
                     Debug.LogError($"{gameObject.name} COLLIDE {currentThrowable.name} v:{currentThrowable.VelocityMagnitude} d:{damage}");
                     _invulnerableTime = Time.time + invulnerableDelay;
+                    _hitFeedback.DoHitAnimation();
                 }
             }
         }
