@@ -43,7 +43,7 @@ public class ChildController : MonoBehaviour
         }
         else
         {
-            Debug.LogError(Input.GetAxis("Horizontal") +" " + Input.GetAxis("Vertical"));
+            charBody.angularVelocity = Vector3.zero;
         }
     }
 }
