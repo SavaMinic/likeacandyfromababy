@@ -46,3 +46,4 @@ build_info.txt.meta
 Assets/Plugins/Editor
 Editor.meta
 Plugins.meta
+Logs/*
