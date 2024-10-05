@@ -438,8 +438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5c06f5737764e0fa3efedbe9bf140f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitColor: {r: 1, g: 0, b: 0, a: 1}
-  cryColor: {r: 1, g: 0.9765383, b: 0.2980392, a: 1}
+  hitColor: {r: 1, g: 0.9765383, b: 0.2980392, a: 1}
+  cryColor: {r: 1, g: 0, b: 0, a: 1}
   hitDuration: 0.4
   hitColorAnimationCurve:
     serializedVersion: 2
