@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,15 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int scoreTarget = 10;
     [SerializeField] private IntroGamePanel introGamePanel;
     [SerializeField] private EndGamePanel endGamePanel;
-    
+
     private readonly int[] _scores = { 0, 0, 0, 0 };
     private CandySpawner _candySpawner;
     private GameState _gameState;
-
-    private enum GameState
-    {
-        Intro, Playing, End
-    }
 
     public bool IsActive => _gameState == GameState.Playing;
 
@@ -27,29 +20,25 @@ public class GameManager : MonoBehaviour
     {
         _candySpawner = FindObjectOfType<CandySpawner>();
         _gameState = GameState.Intro;
-        Time.timeScale = 0f;
     }
 
     private void Start()
     {
+        Time.timeScale = 0f;
         introGamePanel.ShowIntro(scoreTarget);
     }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape) && (_gameState == GameState.End || _gameState == GameState.Playing))
-        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
 
         if (_gameState == GameState.Intro && Input.GetKeyUp(KeyCode.Return))
-        {
             introGamePanel.HideIntro(() =>
             {
                 _gameState = GameState.Playing;
                 Time.timeScale = 1f;
             });
-        }
     }
 
     public void IncreaseScore(int playerIndex)
@@ -71,12 +60,18 @@ public class GameManager : MonoBehaviour
             // spawn a new candy somewhere
             StartCoroutine(SpawnNewCandyAfterSeconds(Random.Range(2f, 4f)));
         }
-        
     }
 
     private IEnumerator SpawnNewCandyAfterSeconds(float time)
     {
         yield return new WaitForSeconds(time);
         _candySpawner.SpawnCandy(1);
+    }
+
+    private enum GameState
+    {
+        Intro,
+        Playing,
+        End
     }
 }
