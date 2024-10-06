@@ -156,6 +156,7 @@ MonoBehaviour:
   verticalAxis: Vertical
   jumpKey: 32
   holdThrowKey: 101
+  holdThrowKey2: 0
   jumpLayerMask:
     serializedVersion: 2
     m_Bits: 3072

@@ -137,6 +137,12 @@ MonoBehaviour:
   changePointManuallyAfterSeconds: 10
   charBody: {fileID: 1636382116091801702}
   charTransform: {fileID: 6241102458091265201}
+  candyLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  magnitudeForDropping: 1
+  throwForce: {x: 200, y: 300}
+  unableToPickDelay: 2
 --- !u!1001 &6968960737426302250
 PrefabInstance:
   m_ObjectHideFlags: 0

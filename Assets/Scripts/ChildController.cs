@@ -15,8 +15,10 @@ public class ChildController : MonoBehaviour
     [SerializeField] private string verticalAxis = "Vertical";
 
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] private KeyCode jumpKey2 = KeyCode.None;
 
     [SerializeField] private KeyCode holdThrowKey = KeyCode.E;
+    [SerializeField] private KeyCode holdThrowKey2 = KeyCode.None;
 
     [SerializeField] private LayerMask jumpLayerMask;
     
@@ -102,7 +104,7 @@ public class ChildController : MonoBehaviour
         }
 
         // Jumping
-        if (IsAlive && !_isJumping && Input.GetKeyDown(jumpKey))
+        if (IsAlive && !_isJumping && (Input.GetKeyDown(jumpKey) || Input.GetKeyDown(jumpKey2)))
         {
             _isJumping = true;
             charBody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
@@ -110,14 +112,15 @@ public class ChildController : MonoBehaviour
         }
 
         // hold/throw
-        if (IsAlive && _throwableObject == null && Input.GetKeyDown(holdThrowKey))
+        if (IsAlive && _throwableObject == null 
+                    && (Input.GetKeyDown(holdThrowKey) || Input.GetKeyDown(holdThrowKey2)))
         {
             if (_grabController.LatestGrabObject != null)
             {
                 _thrownObject = null;
                 _throwableObject = _grabController.LatestGrabObject;
                 // hold and lock in place
-                _throwableObject.Hold(transform);
+                _throwableObject.Hold(transform, new Vector3(0,0.5f, 0.25f));
 
                 var candy = _throwableObject.GetComponent<CandyObject>();
                 if (candy != null)
@@ -132,7 +135,7 @@ public class ChildController : MonoBehaviour
             }
         }
         else if (_throwableObject != null
-                 && (Input.GetKeyUp(holdThrowKey) || !IsAlive))
+                 && (Input.GetKeyUp(holdThrowKey) || Input.GetKeyUp(holdThrowKey2) || !IsAlive))
         {
             ThrowItAway();
         }

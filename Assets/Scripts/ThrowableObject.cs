@@ -14,7 +14,7 @@ public class ThrowableObject : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    public void Hold(Transform holder)
+    public void Hold(Transform holder, Vector3 holdPosition)
     {
         _rigidbody.isKinematic = true;
         _collider.enabled = false;
@@ -22,7 +22,7 @@ public class ThrowableObject : MonoBehaviour
         transform.SetParent(holder);
         
         // hold it up
-        transform.localPosition = new Vector3(0,0.5f, 0.25f);
+        transform.localPosition = holdPosition;
     }
 
     public void Throw(Vector3 throwVector)

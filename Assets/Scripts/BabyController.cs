@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BabyController : MonoBehaviour
 {
@@ -10,10 +12,16 @@ public class BabyController : MonoBehaviour
     [SerializeField] private float changePointManuallyAfterSeconds = 10f;
     [SerializeField] private Rigidbody charBody;
     [SerializeField] private Transform charTransform;
+    [SerializeField] private LayerMask candyLayerMask;
+    [SerializeField] private float magnitudeForDropping = 2f;
+    [SerializeField] private Vector2 throwForce;
+    [SerializeField] private float unableToPickDelay = 2f;
     private HitFeedback _hitFeedback;
 
     private Vector3 _nextPoint;
     private float _timeToChangeNexPoint = float.MaxValue;
+    private ThrowableObject _throwableObject;
+    private float _unableToPickTime;
 
     private void Awake()
     {
@@ -56,6 +64,34 @@ public class BabyController : MonoBehaviour
             _nextPoint = transform.position + (Vector3.zero - transform.position).normalized * pointRange;
 
         _timeToChangeNexPoint = Time.time + changePointManuallyAfterSeconds;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (((1 << collision.gameObject.layer) & candyLayerMask) != 0)
+        {
+            var currentThrowable = collision.gameObject.GetComponent<ThrowableObject>();
+            
+            var magnitude = currentThrowable.VelocityMagnitude;
+            if (magnitude > magnitudeForDropping && _throwableObject != null)
+            {
+                // throw it away
+                var throwVector = throwForce.x * transform.forward;
+                throwVector.y = throwForce.y;
+                _throwableObject.Throw(throwVector);
+                _throwableObject = null;
+                
+                // add time
+                _unableToPickTime = Time.time + unableToPickDelay;
+            }
+            
+            var candy = currentThrowable.GetComponent<CandyObject>();
+            if (candy != null && _throwableObject == null && Time.time > _unableToPickTime)
+            {
+                currentThrowable.Hold(transform, new Vector3(0,0.25f, 0.1f));
+                _throwableObject = currentThrowable;
+            }
+        }
     }
 
     public void ShowHitFeedback()
