@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3801efcd0b2734e0cbaf53ee0b20140d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
   horizontalAxis: Horizontal
   verticalAxis: Vertical
   jumpKey: 32
@@ -158,6 +159,9 @@ MonoBehaviour:
   jumpLayerMask:
     serializedVersion: 2
     m_Bits: 3072
+  babyLayerMask:
+    serializedVersion: 2
+    m_Bits: 65536
   hitLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -185,11 +189,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  invulnerableDelay: 0.5
+  invulnerableDelay: 0.35
   speed: 2.1
   rotationSpeed: 10
   jumpForce: 3.5
-  maximumHitPoints: 15
+  maximumHitPoints: 10
   cryDelay: 5
   throwForce: {x: 300, y: 90}
   charTransform: {fileID: 6241102458091265201}
@@ -438,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5c06f5737764e0fa3efedbe9bf140f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitColor: {r: 1, g: 0.9765383, b: 0.2980392, a: 1}
+  hitColor: {r: 1, g: 0.9664805, b: 0, a: 1}
   cryColor: {r: 1, g: 0, b: 0, a: 1}
   hitDuration: 0.4
   hitColorAnimationCurve:

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class BabyController : MonoBehaviour
 {
@@ -12,9 +10,15 @@ public class BabyController : MonoBehaviour
     [SerializeField] private float changePointManuallyAfterSeconds = 10f;
     [SerializeField] private Rigidbody charBody;
     [SerializeField] private Transform charTransform;
+    private HitFeedback _hitFeedback;
 
     private Vector3 _nextPoint;
     private float _timeToChangeNexPoint = float.MaxValue;
+
+    private void Awake()
+    {
+        _hitFeedback = GetComponentInChildren<HitFeedback>();
+    }
 
     private void Start()
     {
@@ -23,10 +27,7 @@ public class BabyController : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time >= _timeToChangeNexPoint)
-        {
-            UpdateNextPoint();
-        }
+        if (Time.time >= _timeToChangeNexPoint) UpdateNextPoint();
     }
 
     private void FixedUpdate()
@@ -50,12 +51,15 @@ public class BabyController : MonoBehaviour
         var pointOffset = Random.insideUnitCircle * pointRange;
         _nextPoint = transform.position + new Vector3(pointOffset.x, 0f, pointOffset.y);
         if (_nextPoint.magnitude >= absoluteDistanceLimit)
-        {
             // go back towards center
             //Debug.LogError($"{gameObject.name} too far away {_nextPoint}");
             _nextPoint = transform.position + (Vector3.zero - transform.position).normalized * pointRange;
-        }
 
         _timeToChangeNexPoint = Time.time + changePointManuallyAfterSeconds;
+    }
+
+    public void ShowHitFeedback()
+    {
+        _hitFeedback.DoHitAnimation();
     }
 }

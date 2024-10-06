@@ -19,6 +19,8 @@ public class ChildController : MonoBehaviour
     [SerializeField] private KeyCode holdThrowKey = KeyCode.E;
 
     [SerializeField] private LayerMask jumpLayerMask;
+    
+    [SerializeField] private LayerMask babyLayerMask;
 
     [SerializeField] private LayerMask hitLayerMask;
 
@@ -132,19 +134,24 @@ public class ChildController : MonoBehaviour
         else if (_throwableObject != null
                  && (Input.GetKeyUp(holdThrowKey) || !IsAlive))
         {
-            // throw it away
-            var throwVector = throwForce.x * transform.forward;
-            throwVector.y = throwForce.y;
-            _throwableObject.Throw(throwVector);
-            
-            var candy = _throwableObject.GetComponent<CandyObject>();
-            if (candy != null) { candy.ReleaseIt(); }
-
-            _thrownObject = _throwableObject;
-            _throwableObject = null;
+            ThrowItAway();
         }
 
         animator.SetBool(IsWalkingAnimKey, isMoving);
+    }
+
+    private void ThrowItAway()
+    {
+        // throw it away
+        var throwVector = throwForce.x * transform.forward;
+        throwVector.y = throwForce.y;
+        _throwableObject.Throw(throwVector);
+            
+        var candy = _throwableObject.GetComponent<CandyObject>();
+        if (candy != null) { candy.ReleaseIt(); }
+
+        _thrownObject = _throwableObject;
+        _throwableObject = null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -161,20 +168,35 @@ public class ChildController : MonoBehaviour
                 var damage = hitMagnitudeToDamage.Evaluate(magnitude);
                 if (damage > 0.1f)
                 {
-                    _invulnerableTime = Time.time + invulnerableDelay;
-                    _hitFeedback.DoHitAnimation();
-
-                    _hitPoints -= damage;
-                    if (_hitPoints <= 0)
-                    {
-                        _hitPoints = 0;
-                        if (_cryAnimation != null) StopCoroutine(_cryAnimation);
-                        StartCoroutine(_cryAnimation = CryBabyCry());
-                    }
-                    
-                    //Debug.LogWarning($"{gameObject.name} hit {currentThrowable.name}  d:{damage} hp:{_hitPoints}");
+                    DecreaseHealth(damage);
                 }
             }
+        }
+
+        // check for baby
+        if (IsAlive && ((1 << collision.gameObject.layer) & babyLayerMask) != 0)
+        {
+            var baby = collision.gameObject.GetComponent<BabyController>();
+            baby.ShowHitFeedback();
+            DecreaseHealth(2f);
+            if (_throwableObject != null)
+            {
+                ThrowItAway();
+            }
+        }
+    }
+
+    private void DecreaseHealth(float damage)
+    {
+        _invulnerableTime = Time.time + invulnerableDelay;
+        _hitFeedback.DoHitAnimation();
+
+        _hitPoints -= damage;
+        if (_hitPoints <= 0)
+        {
+            _hitPoints = 0;
+            if (_cryAnimation != null) StopCoroutine(_cryAnimation);
+            StartCoroutine(_cryAnimation = CryBabyCry());
         }
     }
 

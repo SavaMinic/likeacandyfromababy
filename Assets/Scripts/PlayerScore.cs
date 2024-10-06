@@ -15,7 +15,7 @@ public class PlayerScore : MonoBehaviour
 
     private void Awake()
     {
-        titleLabel.text = $"Player {PlayerIndex + 1}:";
+        titleLabel.text = $"Toddler {PlayerIndex + 1}:";
         scoreLabel.text = _currentScore.ToString();
     }
 

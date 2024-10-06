@@ -16,7 +16,7 @@ public class EndGamePanel : MonoBehaviour
 
     public void ShowEndGame(int winnerIndex)
     {
-        titleLabel.text = $"Player {winnerIndex + 1} took the candies from those tiny creatures!";
+        titleLabel.text = $"Toddler {winnerIndex + 1} took the candies from those tiny creatures!";
         _canvasGroup.interactable = _canvasGroup.blocksRaycasts = true;
         StartCoroutine(AnimateAlpha());
     }
