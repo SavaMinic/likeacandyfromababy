@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.8
   rotationSpeed: 10
-  pointRange: 3
-  absoluteDistanceLimit: 6.5
+  pointRange: 2.5
+  absoluteDistanceLimit: 4.9
   reachingPoint: 0.3
   charBody: {fileID: 1636382116091801702}
   charTransform: {fileID: 6241102458091265201}
