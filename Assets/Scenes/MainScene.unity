@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &10426770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7820434036847231822, guid: e3b3037f91ca14abb9ba5f6a1b2a10fd, type: 3}
+  m_PrefabInstance: {fileID: 154410211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &35968439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,6 +329,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38206845}
   m_CullTransparentMesh: 1
+--- !u!114 &86407287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7820434036847231822, guid: e3b3037f91ca14abb9ba5f6a1b2a10fd, type: 3}
+  m_PrefabInstance: {fileID: 534090186457465081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &86682412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1176,6 +1198,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc32d11cd879041ca9d6d1efde92af67, type: 3}
+--- !u!114 &411507480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7820434036847231822, guid: e3b3037f91ca14abb9ba5f6a1b2a10fd, type: 3}
+  m_PrefabInstance: {fileID: 882439121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &438414201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6241102458091265201, guid: dc32d11cd879041ca9d6d1efde92af67, type: 3}
@@ -1801,21 +1834,33 @@ MonoBehaviour:
   endGamePanel: {fileID: 830231522}
   playersData:
   - playerObject: {fileID: 686537815}
-    playerScorePanel: {fileID: 113197859}
-    playerMovementPanel: {fileID: 2098475390}
+    playerScoreText: {fileID: 86407287}
+    playerMovementText: {fileID: 2098475391}
     keycodeForToggle: 5e0100005f010000
+    playerMovementHint: 'Move: Joystick Stick<br>Hold/Release: Button 1<br>Jump:
+      Button 0<br>(joystick 1)'
+    pressToPlayHint: Press Joystick 1
   - playerObject: {fileID: 1488380269}
-    playerScorePanel: {fileID: 151158841}
-    playerMovementPanel: {fileID: 2084176767}
+    playerScoreText: {fileID: 1230028865}
+    playerMovementText: {fileID: 2084176768}
     keycodeForToggle: 7201000073010000
+    playerMovementHint: 'Move: Joystick Stick<br>Hold/Release: Button 1<br>Jump:
+      Button 0<br>(joystick 2)'
+    pressToPlayHint: Press Joystick 2
   - playerObject: {fileID: 1186744928}
-    playerScorePanel: {fileID: 882439122}
-    playerMovementPanel: {fileID: 963764311}
+    playerScoreText: {fileID: 411507480}
+    playerMovementText: {fileID: 963764312}
     keycodeForToggle: 86010000870100006500000020000000
+    playerMovementHint: 'Move: W/A/S/D<br>Hold/Release: E<br>Jump: Space<br>(joystick
+      3)'
+    pressToPlayHint: Press Joystick 3<br>or E or Space
   - playerObject: {fileID: 1767054402}
-    playerScorePanel: {fileID: 154410212}
-    playerMovementPanel: {fileID: 1408940059}
+    playerScoreText: {fileID: 10426770}
+    playerMovementText: {fileID: 1408940060}
     keycodeForToggle: 9a0100009b0100006f00000070000000
+    playerMovementHint: 'Move: Arrows<br>Hold/Release: O<br>Jump: P<br>(joystick
+      4)'
+    pressToPlayHint: Press Joystick 4<br>or O or P
 --- !u!4 &567977839
 Transform:
   m_ObjectHideFlags: 0
@@ -3314,13 +3359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move: W/A/S/D
-
-    Hold/Release: E
-
-    Jump: Space
-
-    (joystick 3)'
+  m_text: 'Move: W/A/S/D\nHold/Release: E\nJump: Space\n(joystick 3)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3919,6 +3958,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6762096307960128562, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
   m_PrefabInstance: {fileID: 1805552795}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1230028865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7820434036847231822, guid: e3b3037f91ca14abb9ba5f6a1b2a10fd, type: 3}
+  m_PrefabInstance: {fileID: 151158840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1239495722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4324,13 +4374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move: Arrows
-
-    Hold/Release: O
-
-    Jump: P
-
-    (joystick 4)'
+  m_text: 'Move: Arrows\nHold/Release: O\nJump: P\n(joystick 4)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5667,13 +5711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move: Joystick Stick
-
-    Hold/Release: Button 1
-
-    Jump: Button 0
-
-    (joystick
+  m_text: 'Move: Joystick Stick\nHold/Release: Button 1\nJump: Button 0\n(joystick
     2)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

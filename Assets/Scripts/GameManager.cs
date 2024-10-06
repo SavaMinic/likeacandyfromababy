@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -17,9 +19,11 @@ public class GameManager : MonoBehaviour
     public class PlayerData
     {
         public GameObject playerObject;
-        public RectTransform playerScorePanel;
-        public RectTransform playerMovementPanel;
+        public TextMeshProUGUI playerScoreText;
+        public TextMeshProUGUI playerMovementText;
         public List<KeyCode> keycodeForToggle;
+        public string playerMovementHint;
+        public string pressToPlayHint;
     }
 
     private readonly int[] _scores = { 0, 0, 0, 0 };
@@ -36,8 +40,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // TogglePlayer(2, false);
-        // TogglePlayer(3, false);
+        TogglePlayer(2, false);
+        TogglePlayer(3, false);
         
         Time.timeScale = 0f;
         introGamePanel.ShowIntro(scoreTarget);
@@ -59,12 +63,16 @@ public class GameManager : MonoBehaviour
 
         if (_gameState == GameState.Menu && Input.GetKeyUp(KeyCode.Return))
         {
-            _gameState = GameState.Intro;
-            introGamePanel.HideIntro(() =>
+            var activePlayers = playersData.Count(t => t.playerObject.activeSelf);
+            if (activePlayers >= 2)
             {
-                _gameState = GameState.Playing;
-                Time.timeScale = 1f;
-            });
+                _gameState = GameState.Intro;
+                introGamePanel.HideIntro(() =>
+                {
+                    _gameState = GameState.Playing;
+                    Time.timeScale = 1f;
+                });
+            }
         }
 
         if (_gameState == GameState.Menu && Input.anyKeyDown)
@@ -88,8 +96,8 @@ public class GameManager : MonoBehaviour
     private void TogglePlayer(int index, bool isActive)
     {
         playersData[index].playerObject.SetActive(isActive);
-        playersData[index].playerScorePanel.gameObject.SetActive(isActive);
-        playersData[index].playerMovementPanel.gameObject.SetActive(isActive);
+        playersData[index].playerScoreText.text = isActive ? "0" : "/";
+        playersData[index].playerMovementText.text = isActive ? playersData[index].playerMovementHint : playersData[index].pressToPlayHint;
     }
 
     public void IncreaseScore(int playerIndex)
