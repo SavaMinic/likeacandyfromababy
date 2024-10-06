@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private IntroGamePanel introGamePanel;
     [SerializeField] private EndGamePanel endGamePanel;
     [SerializeField] private List<PlayerData> playersData;
+    [SerializeField] private int initialCandyCount = 10;
 
     [Serializable]
     public class PlayerData
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
             if (activePlayers >= 2)
             {
                 _gameState = GameState.Intro;
+                _candySpawner.SpawnCandy(Mathf.RoundToInt(initialCandyCount * (activePlayers / 4f)));
                 introGamePanel.HideIntro(() =>
                 {
                     _gameState = GameState.Playing;

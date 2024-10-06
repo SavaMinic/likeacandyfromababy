@@ -3,16 +3,10 @@ using UnityEngine;
 public class CandySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject candyPrefab;
-    [SerializeField] private int initialCandyCount = 10;
 
     [SerializeField] private float areaDistance = 7f;
     [SerializeField] private float minHeight = 0.5f;
     [SerializeField] private float maxHeight = 1.2f;
-
-    private void Start()
-    {
-        SpawnCandy(initialCandyCount);
-    }
 
     public void SpawnCandy(int count)
     {
