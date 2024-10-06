@@ -948,6 +948,10 @@ PrefabInstance:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
+      propertyPath: jumpKey2
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: playerIndex
       value: 1
       objectReference: {fileID: 0}
@@ -961,7 +965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: holdThrowKey2
-      value: 0
+      value: 371
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: horizontalAxis
@@ -4374,6 +4378,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: jumpKey
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
+      propertyPath: jumpKey2
       value: 410
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
@@ -4382,11 +4390,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: holdThrowKey
-      value: 411
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: verticalAxis
       value: Vertical4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
+      propertyPath: holdThrowKey2
+      value: 411
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: horizontalAxis
@@ -4691,11 +4703,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: jumpKey
-      value: 390
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: jumpKey2
-      value: 32
+      value: 390
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: playerIndex
@@ -4703,7 +4715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: holdThrowKey
-      value: 391
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: verticalAxis
@@ -4711,7 +4723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: holdThrowKey2
-      value: 101
+      value: 391
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: horizontalAxis
@@ -6076,7 +6088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: jumpKey2
-      value: 330
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: holdThrowKey
@@ -6084,7 +6096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061303647418410970, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: holdThrowKey2
-      value: 331
+      value: 351
       objectReference: {fileID: 0}
     - target: {fileID: 6241102458091265201, guid: 1546892b8e9c84007a30e8b23f6f9a97, type: 3}
       propertyPath: m_LocalPosition.x
