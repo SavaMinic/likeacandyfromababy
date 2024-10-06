@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        TogglePlayer(0, true);
+        TogglePlayer(1, true);
         TogglePlayer(2, false);
         TogglePlayer(3, false);
         
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.JoystickButton3))
         {
             if (_gameState == GameState.End || _gameState == GameState.Playing)
             {
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (_gameState == GameState.Menu && Input.GetKeyUp(KeyCode.Return))
+        if (_gameState == GameState.Menu && (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.JoystickButton9)))
         {
             var activePlayers = playersData.Count(t => t.playerObject.activeSelf);
             if (activePlayers >= 2)

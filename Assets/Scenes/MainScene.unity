@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press ENTER to start the game.
+  m_text: Press ENTER/START to start the game.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1837,15 +1837,15 @@ MonoBehaviour:
     playerScoreText: {fileID: 86407287}
     playerMovementText: {fileID: 2098475391}
     keycodeForToggle: 5e0100005f010000
-    playerMovementHint: 'Move: Joystick Stick<br>Hold/Release: Button 1<br>Jump:
-      Button 0<br>(joystick 1)'
+    playerMovementHint: 'Move: Joystick Stick<br>Hold/Release: Button 2<br>Jump:
+      Button 1<br>(joystick 1)'
     pressToPlayHint: Press Joystick 1
   - playerObject: {fileID: 1488380269}
     playerScoreText: {fileID: 1230028865}
     playerMovementText: {fileID: 2084176768}
     keycodeForToggle: 7201000073010000
-    playerMovementHint: 'Move: Joystick Stick<br>Hold/Release: Button 1<br>Jump:
-      Button 0<br>(joystick 2)'
+    playerMovementHint: 'Move: Joystick Stick<br>Hold/Release: Button 2<br>Jump:
+      Button 1<br>(joystick 2)'
     pressToPlayHint: Press Joystick 2
   - playerObject: {fileID: 1186744928}
     playerScoreText: {fileID: 411507480}
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press ESC to restart the game.
+  m_text: Press ESC/Button 4 to restart the game.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
