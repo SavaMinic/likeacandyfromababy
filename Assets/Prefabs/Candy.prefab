@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5884844416080926271}
-  timeToEat: 5
+  timeToEat: 3
   finishColor: {r: 1, g: 0, b: 0, a: 0.39215687}
   eatingScale:
     serializedVersion: 2

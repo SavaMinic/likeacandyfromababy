@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private List<PlayerScore> playerScoresUI;
+    
     private readonly int[] _scores = { 0, 0, 0, 0 };
 
     private void Update()
@@ -17,5 +20,6 @@ public class GameManager : MonoBehaviour
         if (playerIndex < 0 || playerIndex >= _scores.Length) return;
 
         _scores[playerIndex]++;
+        playerScoresUI[playerIndex].UpdateScore(_scores[playerIndex]);
     }
 }
