@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _candySpawner = FindObjectOfType<CandySpawner>();
-        _gameState = GameState.Intro;
+        _gameState = GameState.Menu;
     }
 
     private void Start()
@@ -30,15 +30,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && (_gameState == GameState.End || _gameState == GameState.Playing))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (_gameState == GameState.End || _gameState == GameState.Playing)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                Application.Quit();
+            }
+        }
 
-        if (_gameState == GameState.Intro && Input.GetKeyUp(KeyCode.Return))
+        if (_gameState == GameState.Menu && Input.GetKeyUp(KeyCode.Return))
+        {
+            _gameState = GameState.Intro;
             introGamePanel.HideIntro(() =>
             {
                 _gameState = GameState.Playing;
                 Time.timeScale = 1f;
             });
+        }
     }
 
     public void IncreaseScore(int playerIndex)
@@ -70,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     private enum GameState
     {
+        Menu,
         Intro,
         Playing,
         End
