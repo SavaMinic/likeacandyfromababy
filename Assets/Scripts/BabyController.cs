@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BabyController : MonoBehaviour
 {
@@ -7,14 +9,24 @@ public class BabyController : MonoBehaviour
     [SerializeField] private float pointRange = 10f;
     [SerializeField] private float absoluteDistanceLimit = 10f;
     [SerializeField] private float reachingPoint = 0.5f;
+    [SerializeField] private float changePointManuallyAfterSeconds = 10f;
     [SerializeField] private Rigidbody charBody;
     [SerializeField] private Transform charTransform;
 
     private Vector3 _nextPoint;
+    private float _timeToChangeNexPoint = float.MaxValue;
 
     private void Start()
     {
         UpdateNextPoint();
+    }
+
+    private void Update()
+    {
+        if (Time.time >= _timeToChangeNexPoint)
+        {
+            UpdateNextPoint();
+        }
     }
 
     private void FixedUpdate()
@@ -43,5 +55,7 @@ public class BabyController : MonoBehaviour
             //Debug.LogError($"{gameObject.name} too far away {_nextPoint}");
             _nextPoint = transform.position + (Vector3.zero - transform.position).normalized * pointRange;
         }
+
+        _timeToChangeNexPoint = Time.time + changePointManuallyAfterSeconds;
     }
 }
