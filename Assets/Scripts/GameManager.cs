@@ -14,13 +14,19 @@ public class GameManager : MonoBehaviour
     
     private readonly int[] _scores = { 0, 0, 0, 0 };
     private CandySpawner _candySpawner;
-    
-    public bool IsActive { get; private set; }
+    private GameState _gameState;
+
+    private enum GameState
+    {
+        Intro, Playing, End
+    }
+
+    public bool IsActive => _gameState == GameState.Playing;
 
     private void Awake()
     {
         _candySpawner = FindObjectOfType<CandySpawner>();
-        IsActive = false;
+        _gameState = GameState.Intro;
         Time.timeScale = 0f;
     }
 
@@ -31,15 +37,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-            // TODO: show menu instead of reload
+        if (Input.GetKeyUp(KeyCode.Escape) && (_gameState == GameState.End || _gameState == GameState.Playing))
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
-        if (!IsActive && Input.GetKeyUp(KeyCode.Return))
+        if (_gameState == GameState.Intro && Input.GetKeyUp(KeyCode.Return))
         {
             introGamePanel.HideIntro(() =>
             {
-                IsActive = true;
+                _gameState = GameState.Playing;
                 Time.timeScale = 1f;
             });
         }
@@ -55,8 +62,9 @@ public class GameManager : MonoBehaviour
         if (_scores[playerIndex] >= scoreTarget)
         {
             // end game
-            IsActive = false;
+            _gameState = GameState.End;
             endGamePanel.ShowEndGame(playerIndex);
+            Time.timeScale = 0f;
         }
         else
         {

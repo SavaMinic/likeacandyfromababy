@@ -26,7 +26,7 @@ public class EndGamePanel : MonoBehaviour
         var time = 0f;
         while (time < 0.4f)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             _canvasGroup.alpha = Mathf.Lerp(0f, 1f, time / 0.4f);
             yield return null;
         }

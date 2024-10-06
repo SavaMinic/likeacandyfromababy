@@ -35,7 +35,7 @@ public class PlayerScore : MonoBehaviour
         while (time < animationDuration / 2f)
         {
             scoreLabel.transform.localScale = Vector3.one * Mathf.Lerp(1f, scoreScale, time / (animationDuration / 2f));
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
