@@ -11,16 +11,15 @@ public class CandySpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnCandy(initialCandyCount);
-    }
-
-    private void SpawnCandy(int count)
-    {
         // one is always at 0,0,0
         Instantiate(candyPrefab, Vector3.up, Random.rotation, transform);
-        
+        SpawnCandy(initialCandyCount - 1);
+    }
+
+    public void SpawnCandy(int count)
+    {
         // others are random
-        for (var i = 1; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
             var spawnedCandy = Instantiate(candyPrefab, transform);
             spawnedCandy.transform.position = new Vector3(

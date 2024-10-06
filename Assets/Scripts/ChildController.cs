@@ -73,6 +73,9 @@ public class ChildController : MonoBehaviour
 
     private void Update()
     {
+        if (!_gameManager.IsActive)
+            return;
+        
         var inputVector = new Vector3(Input.GetAxis(horizontalAxis), 0, Input.GetAxis(verticalAxis));
         var cameraFacing = _mainCamera.transform.eulerAngles.y;
         var moveVector = Quaternion.Euler(0, cameraFacing, 0) * inputVector;
