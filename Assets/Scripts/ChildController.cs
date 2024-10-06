@@ -8,6 +8,8 @@ public class ChildController : MonoBehaviour
     private static readonly int CryAnimKey = Animator.StringToHash("cry");
     private static readonly int IsCryingAnimKey = Animator.StringToHash("isCrying");
 
+    [SerializeField] private int playerIndex;
+
     [SerializeField] private string horizontalAxis = "Horizontal";
 
     [SerializeField] private string verticalAxis = "Vertical";
@@ -42,6 +44,7 @@ public class ChildController : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    private GameManager _gameManager;
     private GrabController _grabController;
     private HitFeedback _hitFeedback;
 
@@ -63,6 +66,7 @@ public class ChildController : MonoBehaviour
         _mainCamera = Camera.main;
         _grabController = GetComponentInChildren<GrabController>();
         _hitFeedback = GetComponentInChildren<HitFeedback>();
+        _gameManager = FindObjectOfType<GameManager>();
 
         _hitPoints = maximumHitPoints;
     }
@@ -109,6 +113,17 @@ public class ChildController : MonoBehaviour
                 _throwableObject = _grabController.LatestGrabObject;
                 // hold and lock in place
                 _throwableObject.Hold(transform);
+
+                var candy = _throwableObject.GetComponent<CandyObject>();
+                if (candy != null)
+                {
+                    candy.GrabByPlayer((eatenCandy) =>
+                    {
+                        Destroy(eatenCandy);
+                        //TODO: increase score
+                        _gameManager.IncreaseScore(playerIndex);
+                    });
+                }
             }
         }
         else if (_throwableObject != null
@@ -118,6 +133,9 @@ public class ChildController : MonoBehaviour
             var throwVector = throwForce.x * transform.forward;
             throwVector.y = throwForce.y;
             _throwableObject.Throw(throwVector);
+            
+            var candy = _throwableObject.GetComponent<CandyObject>();
+            if (candy != null) { candy.ReleaseIt(); }
 
             _thrownObject = _throwableObject;
             _throwableObject = null;

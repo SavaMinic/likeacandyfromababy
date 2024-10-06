@@ -5,10 +5,15 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: candy
+    second: {fileID: 2100000, guid: cfcad445598454f5fa4636e199aef439, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: candy-cane
-    second: {fileID: 2800000, guid: 98b37e787ce7d4459ac9d6a94c4831c5, type: 3}
+    second: {fileID: 2800000, guid: 1b16a58e5d78e4abf9f04628b668ac07, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -95,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.049999997
+    globalScale: 5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
