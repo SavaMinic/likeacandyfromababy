@@ -7,6 +7,8 @@ public class HitFeedback : MonoBehaviour
     [SerializeField] private Color cryColor;
     [SerializeField] private float hitDuration = 1f;
     [SerializeField] private AnimationCurve hitColorAnimationCurve;
+    [SerializeField] private ParticleSystem hitParticleSystem;
+    
     private IEnumerator _hitAnimation;
 
     private SkinnedMeshRenderer _meshRenderer;
@@ -32,6 +34,11 @@ public class HitFeedback : MonoBehaviour
 
     private IEnumerator DoHit()
     {
+        if (hitParticleSystem != null)
+        {
+            hitParticleSystem.Play(true);
+        }
+        
         var time = 0f;
         while (time <= hitDuration)
         {

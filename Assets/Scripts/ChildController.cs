@@ -47,6 +47,7 @@ public class ChildController : MonoBehaviour
     [SerializeField] private Rigidbody charBody;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject confettiPrefab;
 
     private GameManager _gameManager;
     private GrabController _grabController;
@@ -128,8 +129,11 @@ public class ChildController : MonoBehaviour
                     candy.GrabByPlayer((eatenCandy) =>
                     {
                         Destroy(eatenCandy);
-                        //TODO: increase score
                         _gameManager.IncreaseScore(playerIndex);
+
+                        var confettiPos = transform.position;
+                        confettiPos.y = 0.5f;
+                        Instantiate(confettiPrefab, confettiPos, Quaternion.identity);
                     });
                 }
             }
