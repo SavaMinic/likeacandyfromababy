@@ -197,7 +197,7 @@ MonoBehaviour:
   rotationSpeed: 10
   jumpForce: 3.5
   maximumHitPoints: 10
-  cryDelay: 5
+  cryDelay: 4
   throwForce: {x: 300, y: 90}
   charTransform: {fileID: 6241102458091265201}
   charBody: {fileID: 1636382116091801702}

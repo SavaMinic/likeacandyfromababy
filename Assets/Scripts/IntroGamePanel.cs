@@ -23,7 +23,7 @@ public class IntroGamePanel : MonoBehaviour
     public void ShowIntro(int count)
     {
         _canvasGroup.alpha = 1f;
-        titleLabel.text = $"Take {count} candies from babies,\nfaster than the other toddlers.";
+        titleLabel.text = $"Grab {count} sweets, don’t hesitate,\nOutrun the kids, you won’t be late!";
     }
 
     public void HideIntro(Action callback)
