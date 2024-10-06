@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<PlayerScore> playerScoresUI;
     [SerializeField] private int scoreTarget = 10;
+    [SerializeField] private IntroGamePanel introGamePanel;
     [SerializeField] private EndGamePanel endGamePanel;
     
     private readonly int[] _scores = { 0, 0, 0, 0 };
@@ -19,7 +20,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _candySpawner = FindObjectOfType<CandySpawner>();
-        IsActive = true;
+        IsActive = false;
+        Time.timeScale = 0f;
+    }
+
+    private void Start()
+    {
+        introGamePanel.ShowIntro(scoreTarget);
     }
 
     private void Update()
@@ -27,6 +34,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape))
             // TODO: show menu instead of reload
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (!IsActive && Input.GetKeyUp(KeyCode.Return))
+        {
+            introGamePanel.HideIntro(() =>
+            {
+                IsActive = true;
+                Time.timeScale = 1f;
+            });
+        }
     }
 
     public void IncreaseScore(int playerIndex)
