@@ -10,10 +10,12 @@ public class HitFeedback : MonoBehaviour
     private IEnumerator _hitAnimation;
 
     private SkinnedMeshRenderer _meshRenderer;
+    private Color _initialColor;
 
     private void Awake()
     {
         _meshRenderer = GetComponent<SkinnedMeshRenderer>();
+        _initialColor = _meshRenderer.material.color;
     }
 
     public void DoHitAnimation()
@@ -25,7 +27,7 @@ public class HitFeedback : MonoBehaviour
     public void ToggleCrying(bool isCrying)
     {
         if (_hitAnimation != null) StopCoroutine(_hitAnimation);
-        _meshRenderer.material.color = isCrying ? cryColor : Color.white;
+        _meshRenderer.material.color = isCrying ? cryColor : _initialColor;
     }
 
     private IEnumerator DoHit()
@@ -34,7 +36,7 @@ public class HitFeedback : MonoBehaviour
         while (time <= hitDuration)
         {
             var colorIntensity = hitColorAnimationCurve.Evaluate(time / hitDuration);
-            _meshRenderer.material.color = Color.Lerp(Color.white, hitColor, colorIntensity);
+            _meshRenderer.material.color = Color.Lerp(_initialColor, hitColor, colorIntensity);
             time += Time.deltaTime;
             yield return null;
         }

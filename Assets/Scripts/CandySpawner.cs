@@ -11,9 +11,7 @@ public class CandySpawner : MonoBehaviour
 
     private void Start()
     {
-        // one is always at 0,0,0
-        Instantiate(candyPrefab, Vector3.up, Random.rotation, transform);
-        SpawnCandy(initialCandyCount - 1);
+        SpawnCandy(initialCandyCount);
     }
 
     public void SpawnCandy(int count)
